@@ -32,7 +32,7 @@ def get_exchange_data() -> List[Dict[str, Any]]:
 
 def _get_exchange_insert_query() -> str:
     return '''
-    INSERT INTO bitcoin.exchange (
+    INSERT INTO bitcoin_exchange (
         id,
         name,
         rank,
@@ -41,8 +41,8 @@ def _get_exchange_insert_query() -> str:
         tradingpairs,
         socket,
         exchangeurl,
-        updated_unix_millis,
-        updated_utc
+        updated_unix_millis
+
     )
     VALUES (
         %(exchangeId)s,
@@ -54,7 +54,6 @@ def _get_exchange_insert_query() -> str:
         %(socket)s,
         %(exchangeUrl)s,
         %(updated)s,
-        %(update_dt)s
     );
     '''
 
