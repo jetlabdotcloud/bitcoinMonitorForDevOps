@@ -62,8 +62,8 @@ def run() -> None:
     for d in data:
         d['update_dt'] = get_utc_from_unix_time(d.get('updated'))
         d["rank"] = int(d["rank"]) 
-        d["percentTotalVolume"] = float(d["percentTotalVolume"])
-        d["volumeUsd"] = float(d["volumeUsd"])
+        d["percentTotalVolume"] = float(d.get("percentTotalVolume",0))
+        d["volumeUsd"] = float(d.get("volumeUsd",0))
         d["tradingPairs"] = int(d["tradingPairs"])
 
  
