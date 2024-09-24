@@ -41,8 +41,8 @@ def _get_exchange_insert_query() -> str:
         tradingpairs,
         socket,
         exchangeurl,
-        updated_unix_millis
-
+        updated_unix_millis,
+        updated_utc
     )
     VALUES (
         %(exchangeId)s,
@@ -54,6 +54,7 @@ def _get_exchange_insert_query() -> str:
         %(socket)s,
         %(exchangeUrl)s,
         %(updated)s,
+        %(update_dt)s
     );
     '''
 
@@ -62,6 +63,12 @@ def run() -> None:
     data = get_exchange_data()
     for d in data:
         d['update_dt'] = get_utc_from_unix_time(d.get('updated'))
+        d["rank"] = int(d["rank"]) 
+        d["percenttotalvolume"] = float(d["percenttotalvolume"])
+        d["volumeusd"] = float(d["volumeusd"])
+        d["tradingpairs"] = int(d["tradingpairs"])
+        d["updated_unix_millis"] = int(d["updated_unix_millis"])
+ 
     with WarehouseConnection(get_warehouse_creds()).managed_cursor() as curr:
         p.execute_batch(curr, _get_exchange_insert_query(), data)
 
