@@ -23,4 +23,5 @@ jobs:
           WAREHOUSE_DB: ${{ secrets.WAREHOUSE_DB }}
           WAREHOUSE_HOST: ${{ secrets.WAREHOUSE_HOST }}
           WAREHOUSE_PORT: ${{ secrets.WAREHOUSE_PORT }}
+          PYTHONPATH: /home/runner/work/bitcoinMonitorForDevOps/bitcoinMonitorForDevOps/src
         run: python3 src/bitcoinmonitor/exchange_data_etl.py
