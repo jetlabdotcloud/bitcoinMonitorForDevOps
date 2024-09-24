@@ -3,6 +3,7 @@ on:
   schedule:
     - cron: "15 4,5 * * *"   # <=== Change this value
   workflow_dispatch:
+  
 jobs:
   pull-bitcoin-exchange-info:
     runs-on: ubuntu-latest
